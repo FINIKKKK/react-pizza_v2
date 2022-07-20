@@ -1,4 +1,4 @@
-@import 'variables';
+@import '../variables';
 
 .header {
   border-bottom: 1px solid $gray-line;
@@ -10,7 +10,7 @@
     justify-content: space-between;
   }
 
-  &__logo {
+  &__logo a {
     display: flex;
 
     img {
