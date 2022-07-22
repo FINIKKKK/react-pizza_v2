@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Categories, Sort, PizzaItem } from "../components";
+import pizzas from "../assets/pizzas.json";
 
 function Home() {
   return (
@@ -12,16 +13,16 @@ function Home() {
 
       <h2 className="content__title">Все пиццы</h2>
       <div className="content__items">
-        {/* {items.map((obj, index) => (
+        {pizzas.map((obj, index) => (
           <PizzaItem
             key={`${obj.title}_${index}`}
-            img={obj.img}
-            title={obj.title}
+            img={obj.imageUrl}
+            title={obj.name}
             price={obj.price}
+            types={obj.types}
+            sizes={obj.sizes}
           />
-        ))} */}
-
-        <PizzaItem />
+        ))}
       </div>
     </div>
   );

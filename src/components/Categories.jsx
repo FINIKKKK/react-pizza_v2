@@ -1,6 +1,7 @@
 import React from "react";
 
 const categoriesLabels = [
+  "Все",
   "Мясные",
   "Вегетарианская",
   "Гриль",
@@ -9,13 +10,11 @@ const categoriesLabels = [
 ];
 
 function Categories() {
-  const [activeCategory, setActiveCategory] = React.useState(null);
+  const [activeCategory, setActiveCategory] = React.useState(0);
 
   return (
     <div className="categories">
       <ul>
-        <li className="active">Все</li>
-
         {categoriesLabels.map((label, index) => (
           <li
             key={`${label}_${index}`}

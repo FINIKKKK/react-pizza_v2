@@ -9,9 +9,9 @@ function App() {
   const [pizzas, setPizzas] = React.useState([]);
 
   React.useEffect(() => {
-    axios.get("./db.json").then((resp) => {
-      setPizzas(resp);
-    });
+    // axios.get("./db.json").then((resp) => {
+    //   setPizzas(resp);
+    // });
   }, []);
 
   return (
