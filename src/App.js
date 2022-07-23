@@ -7,11 +7,15 @@ import { Home, Cart } from "./pages";
 
 function App() {
   const [pizzas, setPizzas] = React.useState([]);
+  const [isLoaded, setIsLoaded] = React.useState(false);
 
   React.useEffect(() => {
-    // axios.get("./db.json").then((resp) => {
-    //   setPizzas(resp);
-    // });
+    axios
+      .get("https://62dbdd5d57ac3c3f3c5055d6.mockapi.io/pizzas")
+      .then(({ data }) => {
+        setPizzas(data);
+        setIsLoaded(true);
+      });
   }, []);
 
   return (
@@ -20,7 +24,11 @@ function App() {
 
       <div className="content">
         <Routes>
-          <Route exact path="/" element={<Home items={[]} />} />
+          <Route
+            exact
+            path="/"
+            element={<Home items={pizzas} isLoaded={isLoaded} />}
+          />
           <Route exact path="/cart" element={<Cart items={[]} />} />
         </Routes>
       </div>

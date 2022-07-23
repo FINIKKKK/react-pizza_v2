@@ -6,9 +6,16 @@ function Sort() {
   const [activeLabel, setActiveLabel] = React.useState(0);
   const [openSort, setOpenSort] = React.useState(false);
 
+  const selectedSortItem = sortLabels[activeLabel]
+
   const onClickSort = () => {
     setOpenSort(!openSort);
   };
+
+  const onClickSortItem = (index) => {
+    setActiveLabel(index)
+    setOpenSort(false)
+  }
 
   const handleOutClick = (e) => {
     
@@ -18,10 +25,12 @@ function Sort() {
     document.addEventListener('click', handleOutClick)
   }, []);
 
+
+
   return (
     <div className="sort">
       <div className="sort__label">
-        <svg
+        <svg className={openSort ? 'open' : ''}
           width="10"
           height="6"
           viewBox="0 0 10 6"
@@ -34,7 +43,7 @@ function Sort() {
           />
         </svg>
         <b>Сортировка по:</b>
-        <span onClick={onClickSort}>{sortLabels[activeLabel]}</span>
+        <span onClick={onClickSort}>{selectedSortItem}</span>
       </div>
       {openSort && (
         <div className="sort__popup">
@@ -43,7 +52,7 @@ function Sort() {
               <li
                 key={`${label}_${index}`}
                 className={activeLabel === index ? "active" : ""}
-                onClick={() => setActiveLabel(index)}
+                onClick={() => onClickSortItem(index)}
               >
                 {label}
               </li>

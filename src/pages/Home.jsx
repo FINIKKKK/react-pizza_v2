@@ -1,9 +1,8 @@
 import React from "react";
 
-import { Categories, Sort, PizzaItem } from "../components";
-import pizzas from "../assets/pizzas.json";
+import { Categories, Sort, PizzaItem, LoadingPizzaItem } from "../components";
 
-function Home() {
+function Home({ items, isLoaded }) {
   return (
     <div className="container">
       <div className="content__top">
@@ -13,16 +12,20 @@ function Home() {
 
       <h2 className="content__title">Все пиццы</h2>
       <div className="content__items">
-        {pizzas.map((obj, index) => (
-          <PizzaItem
-            key={`${obj.title}_${index}`}
-            img={obj.imageUrl}
-            title={obj.name}
-            price={obj.price}
-            types={obj.types}
-            sizes={obj.sizes}
-          />
-        ))}
+        {isLoaded
+          ? items.map((obj, index) => (
+              <PizzaItem
+                key={`${obj.title}_${index}`}
+                img={obj.imageUrl}
+                title={obj.name}
+                price={obj.price}
+                types={obj.types}
+                sizes={obj.sizes}
+              />
+            ))
+          : Array(12)
+              .fill(0)
+              .map((_, index) => <LoadingPizzaItem key={index} />)}
       </div>
     </div>
   );
