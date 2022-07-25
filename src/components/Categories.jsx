@@ -1,5 +1,7 @@
 import React from "react";
 
+import AppContext from "../context";
+
 const categoriesLabels = [
   "Все",
   "Мясные",
@@ -10,7 +12,7 @@ const categoriesLabels = [
 ];
 
 function Categories() {
-  const [activeCategory, setActiveCategory] = React.useState(0);
+  const { activeCategory, setActiveCategory } = React.useContext(AppContext);
 
   return (
     <div className="categories">

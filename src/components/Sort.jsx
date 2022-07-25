@@ -1,36 +1,40 @@
 import React from "react";
 
-const sortLabels = ["популярности", "цене", "алфавиту"];
+import AppContext from "../context";
+
+const sortLabels = [
+  "популярности",
+  "цене по убыванию",
+  "цена по возрастанию",
+  "алфавиту",
+];
 
 function Sort() {
-  const [activeLabel, setActiveLabel] = React.useState(0);
+  const { activeSortItem, setActiveSortItem } = React.useContext(AppContext);
   const [openSort, setOpenSort] = React.useState(false);
 
-  const selectedSortItem = sortLabels[activeLabel]
+  const selectedSortItem = sortLabels[activeSortItem];
 
   const onClickSort = () => {
     setOpenSort(!openSort);
   };
 
   const onClickSortItem = (index) => {
-    setActiveLabel(index)
-    setOpenSort(false)
-  }
+    setActiveSortItem(index);
+    setOpenSort(false);
+  };
 
-  const handleOutClick = (e) => {
-    
-  }
+  const handleOutClick = (e) => {};
 
   React.useEffect(() => {
-    document.addEventListener('click', handleOutClick)
+    document.addEventListener("click", handleOutClick);
   }, []);
-
-
 
   return (
     <div className="sort">
       <div className="sort__label">
-        <svg className={openSort ? 'open' : ''}
+        <svg
+          className={openSort ? "open" : ""}
           width="10"
           height="6"
           viewBox="0 0 10 6"
@@ -51,7 +55,7 @@ function Sort() {
             {sortLabels.map((label, index) => (
               <li
                 key={`${label}_${index}`}
-                className={activeLabel === index ? "active" : ""}
+                className={activeSortItem === index ? "active" : ""}
                 onClick={() => onClickSortItem(index)}
               >
                 {label}
