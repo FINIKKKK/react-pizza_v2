@@ -1,8 +1,8 @@
-@import 'fonts';
-@import 'variables';
-@import 'libs/normalize';
+@import "fonts";
+@import "variables";
+@import "libs/normalize";
 
-@import 'components/all';
+@import "components/all";
 
 body {
   background-color: $background;
@@ -27,7 +27,8 @@ body {
   &__items {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    margin-right: -15px;
+    margin-left: -15px;
   }
 
   &__top {
@@ -50,7 +51,11 @@ body {
     }
   }
 }
-
+.content__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .cart {
   &__top {
     display: flex;
