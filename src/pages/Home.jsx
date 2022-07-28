@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 import {
   Categories,
@@ -17,14 +18,13 @@ function Home() {
   const [pizzas, setPizzas] = React.useState([]);
   const [isLoaded, setIsLoaded] = React.useState(false);
 
-  const [activeCategory, setActiveCategory] = React.useState(0);
-  const [activeSortItem, setActiveSortItem] = React.useState(0);
+  const { activeCategory, activeSortItem } = useSelector(
+    ({ filters }) => filters
+  );
 
   const [searchValue, setSearchValue] = React.useState("");
 
   const [currentPage, setCurrentPage] = React.useState(1);
-
-  console.log(currentPage);
 
   React.useEffect(() => {
     setIsLoaded(false);
@@ -46,10 +46,6 @@ function Home() {
   return (
     <AppContext.Provider
       value={{
-        activeCategory,
-        activeSortItem,
-        setActiveSortItem,
-        setActiveCategory,
         searchValue,
         setSearchValue,
       }}

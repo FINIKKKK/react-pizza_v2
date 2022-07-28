@@ -1,6 +1,7 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 
-import AppContext from "../context";
+import { setActiveSortItem } from "../redux/slices/filtersSlice";
 
 const sortLabels = [
   "популярности",
@@ -10,8 +11,9 @@ const sortLabels = [
 ];
 
 function Sort() {
-  const { activeSortItem, setActiveSortItem } = React.useContext(AppContext);
   const [openSort, setOpenSort] = React.useState(false);
+  const activeSortItem = useSelector((state) => state.filters.activeSortItem);
+  const dispatch = useDispatch();
 
   const selectedSortItem = sortLabels[activeSortItem];
 
@@ -20,7 +22,7 @@ function Sort() {
   };
 
   const onClickSortItem = (index) => {
-    setActiveSortItem(index);
+    dispatch(setActiveSortItem(index));
     setOpenSort(false);
   };
 

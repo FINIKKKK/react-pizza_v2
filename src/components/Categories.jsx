@@ -1,6 +1,7 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 
-import AppContext from "../context";
+import { setActiveCategory } from "../redux/slices/filtersSlice";
 
 const categoriesLabels = [
   "Все",
@@ -12,7 +13,10 @@ const categoriesLabels = [
 ];
 
 function Categories() {
-  const { activeCategory, setActiveCategory } = React.useContext(AppContext);
+  const activeCategory = useSelector(
+    ({filters}) => filters.activeCategory
+  );
+  const dispatch = useDispatch();
 
   return (
     <div className="categories">
@@ -21,7 +25,7 @@ function Categories() {
           <li
             key={`${label}_${index}`}
             className={activeCategory === index ? "active" : ""}
-            onClick={() => setActiveCategory(index)}
+            onClick={() => dispatch(setActiveCategory(index))}
           >
             {label}
           </li>
