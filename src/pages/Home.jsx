@@ -24,7 +24,7 @@ function Home() {
 
   const [searchValue, setSearchValue] = React.useState("");
 
-  const [currentPage, setCurrentPage] = React.useState(1);
+  const currentPage = useSelector(({ pagination }) => pagination.currentPage);
 
   React.useEffect(() => {
     setIsLoaded(false);
@@ -75,7 +75,7 @@ function Home() {
                 .fill(0)
                 .map((_, index) => <LoadingPizzaItem key={index} />)}
         </div>
-        <Pagination onChangePage={(page) => setCurrentPage(page)} />
+        <Pagination />
       </div>
     </AppContext.Provider>
   );
