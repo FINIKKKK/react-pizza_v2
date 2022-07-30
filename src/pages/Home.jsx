@@ -1,6 +1,8 @@
 import React from "react";
 import axios from "axios";
-import { useSelector } from "react-redux";
+import qs from "qs";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import {
   Categories,
@@ -10,23 +12,28 @@ import {
   Search,
   Pagination,
 } from "../components";
+import { setUrlFilters } from "../redux/slices/filtersSlice";
 import AppContext from "../context";
 
 function Home() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const isURL = React.useRef(false);
+  const isMounted = React.useRef(true);
+
   const sortLabels = ["rating", "price", "name"];
 
   const [pizzas, setPizzas] = React.useState([]);
   const [isLoaded, setIsLoaded] = React.useState(false);
 
-  const { activeCategory, activeSortItem } = useSelector(
+  const { activeCategory, activeSortItem, currentPage } = useSelector(
     ({ filters }) => filters
   );
 
   const [searchValue, setSearchValue] = React.useState("");
 
-  const currentPage = useSelector(({ pagination }) => pagination.currentPage);
-
-  React.useEffect(() => {
+  const fetchPizzas = () => {
     setIsLoaded(false);
     axios
       .get(
@@ -40,8 +47,35 @@ function Home() {
         setPizzas(data);
         setIsLoaded(true);
       });
+  };
+
+  React.useEffect(() => {
+    if (window.location.search) {
+      const paramsUrl = qs.parse(window.location.search.substring(1));
+      dispatch(setUrlFilters(paramsUrl));
+      isURL.current = true;
+    }
+  }, []);
+
+  React.useEffect(() => {
     window.scrollTo(0, 0);
+    if (!isURL.current) {
+      fetchPizzas();
+    }
+    isURL.current = false;
   }, [activeCategory, activeSortItem, searchValue, currentPage]);
+
+  React.useEffect(() => {
+    if (!isMounted.current) {
+      const urlPage = qs.stringify({
+        currentPage,
+        activeCategory,
+        activeSortItem,
+      });
+      navigate(`?${urlPage}`);
+    }
+    isMounted.current = false;
+  }, [activeCategory, activeSortItem, currentPage]);
 
   return (
     <AppContext.Provider
