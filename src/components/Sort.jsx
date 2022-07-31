@@ -14,6 +14,7 @@ function Sort() {
   const [openSort, setOpenSort] = React.useState(false);
   const activeSortItem = useSelector((state) => state.filters.activeSortItem);
   const dispatch = useDispatch();
+  const sortRef = React.useRef();
 
   const selectedSortItem = sortLabels[activeSortItem];
 
@@ -26,14 +27,22 @@ function Sort() {
     setOpenSort(false);
   };
 
-  const handleOutClick = (e) => {};
+  const handleClickOut = (e) => {
+    if (!e.path.includes(sortRef.current)) {
+      setOpenSort(false);
+      console.log("gg");
+    }
+  };
 
   React.useEffect(() => {
-    document.addEventListener("click", handleOutClick);
+    document.body.addEventListener("click", handleClickOut);
+    return () => {
+      document.body.removeEventListener("click", handleClickOut);
+    };
   }, []);
 
   return (
-    <div className="sort">
+    <div ref={sortRef} className="sort">
       <div className="sort__label">
         <svg
           className={openSort ? "open" : ""}

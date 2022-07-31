@@ -97,12 +97,8 @@ function Home() {
           {isLoaded
             ? pizzas.map((obj, index) => (
                 <PizzaItem
-                  key={`${obj.title}_${index}`}
-                  img={obj.imageUrl}
-                  title={obj.name}
-                  price={obj.price}
-                  types={obj.types}
-                  sizes={obj.sizes}
+                  key={obj.id}
+                  {...obj}
                 />
               ))
             : Array(12)
@@ -114,9 +110,5 @@ function Home() {
     </AppContext.Provider>
   );
 }
-
-// .filter((obj) =>
-//                   obj.name.toLowerCase().includes(searchValue.toLowerCase())
-//                 )
 
 export default Home;
