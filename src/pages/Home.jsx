@@ -1,6 +1,5 @@
 import React from "react";
-import axios from "axios";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import {
   PizzaItem,
@@ -10,32 +9,35 @@ import {
   Pagination,
   Search,
 } from "../components";
-
-const sortLabels = ["rating", "price", "name"];
+import { fetchPizzas } from "../redux/slices/pizzasSlice";
 
 function Home() {
-  const { activeCategory, activeSortItem, currentPage, searchValue } = useSelector(
-    ({ filters }) => filters
-  );
+  const dispatch = useDispatch();
+  const { activeCategory, activeSortItem, currentPage, searchValue } =
+    useSelector(({ filters }) => filters);
+  const { items, status } = useSelector(({ pizzas }) => pizzas);
+  console.log(items);
 
-  const [pizzas, setPizzas] = React.useState([]);
-  const [isLoaded, setIsLoaded] = React.useState(false);
+  const getPizzas = async () => {
+    try {
+      dispatch(
+        fetchPizzas({
+          activeCategory,
+          activeSortItem,
+          currentPage,
+          searchValue,
+        })
+      );
+      window.scrollTo(0, 0);
+    } catch (error) {
+      alert("Ошибка!");
+      console.log("Ошибка при получении пицц");
+      console.log(error);
+    }
+  };
 
   React.useEffect(() => {
-    window.scrollTo(0, 0);
-    setIsLoaded(false);
-    axios
-      .get(
-        `https://62dbdd5d57ac3c3f3c5055d6.mockapi.io/pizzas?page=${currentPage}&limit=4&search=${searchValue}&${
-          activeCategory > 0 ? `category=${activeCategory}` : ""
-        }&sortBy=${sortLabels[activeSortItem]}&order=${
-          activeSortItem === 2 ? "asc" : "desc"
-        }`
-      )
-      .then(({ data }) => {
-        setPizzas(data);
-        setIsLoaded(true);
-      });
+    getPizzas();
   }, [activeCategory, activeSortItem, currentPage, searchValue]);
 
   return (
@@ -49,8 +51,8 @@ function Home() {
         <Search />
       </div>
       <div className="content__items">
-        {isLoaded
-          ? pizzas.map((obj) => <PizzaItem key={obj.id} {...obj} />)
+        {status === "success"
+          ? items.map((obj) => <PizzaItem key={obj.id} {...obj} />)
           : Array(12)
               .fill(0)
               .map((_, index) => <LoadingPizzaItem key={index} />)}
