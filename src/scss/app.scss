@@ -112,12 +112,23 @@ body {
     }
   }
 
+  &__item-wrapper {
+    width: 100%;
+    .cart__group-title {
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      margin-top: 20px;
+    }
+    .cart__item {
+      margin-left: 35px;
+    }
+    margin-bottom: 25px;
+  }
   &__item {
     display: flex;
     width: 100%;
     border-top: 1px solid $gray-line;
     padding-top: 30px;
-    margin-top: 30px;
 
     &-img {
       display: flex;
@@ -280,7 +291,7 @@ body {
   }
 
   &--empty {
-    margin: 0 auto;
+    margin: 100px auto;
     width: 560px;
     text-align: center;
 

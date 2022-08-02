@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { setActiveSortItem } from "../redux/slices/filtersSlice";
+import { setActiveSortItem } from "../redux/slices/filterSlice";
 
 const sortLabels = [
   "популярности",
@@ -11,10 +11,11 @@ const sortLabels = [
 ];
 
 function Sort() {
-  const [openSort, setOpenSort] = React.useState(false);
-  const activeSortItem = useSelector((state) => state.filters.activeSortItem);
   const dispatch = useDispatch();
+  const [openSort, setOpenSort] = React.useState(false);
   const sortRef = React.useRef();
+
+  const activeSortItem = useSelector((state) => state.filters.activeSortItem);
 
   const selectedSortItem = sortLabels[activeSortItem];
 
@@ -27,17 +28,16 @@ function Sort() {
     setOpenSort(false);
   };
 
-  const handleClickOut = (e) => {
+  const handleClickOutSide = (e) => {
     if (!e.path.includes(sortRef.current)) {
       setOpenSort(false);
-      console.log("gg");
     }
   };
 
   React.useEffect(() => {
-    document.body.addEventListener("click", handleClickOut);
+    document.body.addEventListener("click", handleClickOutSide);
     return () => {
-      document.body.removeEventListener("click", handleClickOut);
+      document.body.removeEventListener("click", handleClickOutSide);
     };
   }, []);
 

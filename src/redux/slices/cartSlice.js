@@ -2,46 +2,45 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   items: [],
-  totalPrice: 0,
   totalCount: 0,
+  totalPrice: 0,
 };
 
 const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addItem(state, action) {
-      const findItem = state.items.find((obj) => obj.id === action.payload.id);
+    addItem(state, { payload }) {
+      const findItem = state.items.find((item) => item.id === payload.id);
 
       if (findItem) {
         findItem.count++;
       } else {
         state.items.push({
-          ...action.payload,
+          ...payload,
           count: 1,
         });
       }
 
-      state.totalPrice = state.items.reduce(
-        (sum, obj) => obj.price * obj.count + sum,
-        0
-      );
-      state.totalCount = state.items.reduce((sum, item) => sum + item.count, 0);
+      state.totalCount++;
+      state.totalPrice += payload.price;
     },
-    minusItem(state, action) {
-      const findItem = state.items.find((obj) => obj.id === action.payload);
+    removeItem(state, { payload }) {
+      state.items = state.items.filter((obj) => obj.id !== payload);
+    },
+    minusItem(state, { payload }) {
+      const findItem = state.items.find((item) => item.id === payload.id);
 
-      if (findItem) {
+      if (findItem.count > 1) {
         findItem.count--;
+        state.totalCount--;
+        state.totalPrice -= payload.price;
       }
-    },
-    removeItem(state, action) {
-      state.items = state.items.filter((obj) => obj.id !== action.payload);
     },
     clearCart(state) {
       state.items = [];
-      state.totalPrice = 0;
       state.totalCount = 0;
+      state.totalPrice = 0;
     },
   },
 });

@@ -8,15 +8,15 @@ const typeNames = ["тонкое", "традиционное"];
 const sizeNames = [26, 30, 40];
 
 function PizzaItem({ id, img, title, price, types, sizes }) {
+  const dispatch = useDispatch();
+  const itemCount = useSelector(({ cart }) =>
+    cart.items.find((item) => item.id === id)
+  );
+
   const [activeType, setActiveType] = React.useState(types[0]);
   const [activeSize, setActiveSize] = React.useState(0);
 
-  const itemCount = useSelector(({ cart }) =>
-    cart.items.find((obj) => obj.id === id)
-  );
-  const dispatch = useDispatch();
-
-  const onAddItemToCart = () => {
+  const onAddItem = () => {
     const itemParams = {
       id,
       img,
@@ -30,7 +30,7 @@ function PizzaItem({ id, img, title, price, types, sizes }) {
   };
 
   const addedCount = itemCount ? itemCount.count : 0;
-  console.log(activeType);
+
   return (
     <div className="pizza-block">
       <div className="pizza-block__content">
@@ -69,7 +69,7 @@ function PizzaItem({ id, img, title, price, types, sizes }) {
         <div className="pizza-block__bottom">
           <div className="pizza-block__price">от {price} ₽</div>
           <button
-            onClick={onAddItemToCart}
+            onClick={onAddItem}
             className="button button--outline button--add"
           >
             <svg

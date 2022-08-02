@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { setActiveCategory } from "../redux/slices/filtersSlice";
+import { setActiveCategory } from "../redux/slices/filterSlice";
 
 const categoriesLabels = [
   "Все",
