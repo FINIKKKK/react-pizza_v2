@@ -1,27 +1,19 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 
-import { Header } from "./components";
 import { Home, Cart } from "./pages";
+import PizzaPage from "./pages/PizzaPage";
+import AppLayout from "./layouts/AppLayout";
 
 function App() {
-
-
   return (
-      <div className="wrapper">
-        <Header />
-
-        <div className="content">
-          <Routes>
-            <Route
-              exact
-              path="/"
-              element={<Home />}
-            />
-            <Route exact path="/cart" element={<Cart items={[]} />} />
-          </Routes>
-        </div>
-      </div>
+    <Routes>
+      <Route path="/" element={<AppLayout />}>
+        <Route path="" element={<Home />} />
+        <Route path="cart" element={<Cart />} />
+        <Route path="pizzas/:id" element={<PizzaPage />} />
+      </Route>
+    </Routes>
   );
 }
 

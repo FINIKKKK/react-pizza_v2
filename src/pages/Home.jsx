@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 
 import {
   PizzaItem,
@@ -16,7 +17,6 @@ function Home() {
   const { activeCategory, activeSortItem, currentPage, searchValue } =
     useSelector(({ filters }) => filters);
   const { items, status } = useSelector(({ pizzas }) => pizzas);
-  console.log(items);
 
   const getPizzas = async () => {
     try {
@@ -52,7 +52,11 @@ function Home() {
       </div>
       <div className="content__items">
         {status === "success"
-          ? items.map((obj) => <PizzaItem key={obj.id} {...obj} />)
+          ? items.map((obj) => (
+              <Link key={obj.id} to={"/pizzas/" + obj.id}>
+                <PizzaItem  {...obj} />
+              </Link>
+            ))
           : Array(12)
               .fill(0)
               .map((_, index) => <LoadingPizzaItem key={index} />)}
