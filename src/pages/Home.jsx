@@ -1,6 +1,5 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
 
 import {
   PizzaItem,
@@ -52,11 +51,7 @@ function Home() {
       </div>
       <div className="content__items">
         {status === "success"
-          ? items.map((obj) => (
-              <Link key={obj.id} to={"/pizzas/" + obj.id}>
-                <PizzaItem  {...obj} />
-              </Link>
-            ))
+          ? items.map((obj) => <PizzaItem key={obj.id} {...obj} />)
           : Array(12)
               .fill(0)
               .map((_, index) => <LoadingPizzaItem key={index} />)}
