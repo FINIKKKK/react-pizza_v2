@@ -30,7 +30,7 @@ const Sort: React.FC = () => {
   };
 
   const handleClickOutSide = (e: MouseEvent) => {
-    const _event = event as MouseEvent & {
+    const _event = e as MouseEvent & {
       path: Node[]
     }
 

@@ -20,7 +20,13 @@ type FetchParams = {
 
 interface PizzasSliseState {
   items: PizzaItem[];
-  status: "loading" | "success" | "error";
+  status: PizzaStatus;
+}
+
+export enum PizzaStatus {
+  LOADING = "loading",
+  SUCCESS = "success",
+  ERROR = "error",
 }
 
 const sortLabels = ["rating", "price", "name"];
@@ -41,7 +47,7 @@ export const fetchPizzas = createAsyncThunk<PizzaItem[], FetchParams>(
 
 const initialState: PizzasSliseState = {
   items: [],
-  status: "loading", // loading, success, error
+  status: PizzaStatus.LOADING, 
 };
 
 const pizzasSlice = createSlice({
@@ -54,21 +60,21 @@ const pizzasSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(fetchPizzas.pending, (state) => {
-      state.status = "loading";
+      state.status = PizzaStatus.LOADING;
       state.items = [];
     });
     builder.addCase(fetchPizzas.fulfilled, (state, { payload }) => {
-      state.status = "success";
+      state.status = PizzaStatus.SUCCESS;
       state.items = payload;
     });
     builder.addCase(fetchPizzas.rejected, (state) => {
-      state.status = "error";
+      state.status = PizzaStatus.ERROR;
       state.items = [];
     });
   },
 });
 
-export const pizzasSliceSelector = ({pizzas}: RootState)  => pizzas
+export const pizzasSliceSelector = ({ pizzas }: RootState) => pizzas;
 
 export const { setPizzas } = pizzasSlice.actions;
 

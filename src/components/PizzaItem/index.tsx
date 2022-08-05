@@ -41,6 +41,7 @@ const PizzaItem: React.FC<PizzaItemProps> = ({
       price,
       type: typeNames[activeType],
       size: sizeNames[activeSize],
+      count: 0,
     };
 
     dispatch(addItem(itemParams));

@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 import {
   PizzaItem,
@@ -10,18 +10,22 @@ import {
   Search,
 } from "../components";
 import { filtersSliceSelector } from "../redux/slices/filtersSlice";
-import { fetchPizzas, pizzasSliceSelector } from "../redux/slices/pizzasSlice";
+import {
+  fetchPizzas,
+  pizzasSliceSelector,
+  PizzaStatus,
+} from "../redux/slices/pizzasSlice";
+import { useAppDispatch } from "../redux/store";
 
 function Home() {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { activeCategory, activeSortItem, currentPage, searchValue } =
     useSelector(filtersSliceSelector);
-  const { items, status } = useSelector(pizzasSliceSelector);
+  const { items } = useSelector(pizzasSliceSelector);
 
   const getPizzas = async () => {
     try {
       dispatch(
-        // @ts-ignore
         fetchPizzas({
           activeCategory,
           activeSortItem,
@@ -52,7 +56,7 @@ function Home() {
         <Search />
       </div>
       <div className="content__items">
-        {status === "success"
+        {PizzaStatus.LOADING
           ? items.map((obj: any) => <PizzaItem key={obj.id} {...obj} />)
           : Array(12)
               .fill(0)
