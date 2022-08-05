@@ -4,10 +4,10 @@ import { Link, useLocation } from "react-router-dom";
 
 import logo from "../assets/img/pizza-logo.svg";
 
-function Header() {
+const Header: React.FC = () => {
   const { totalCount, totalPrice } = useSelector(({ cart }) => cart);
 
-  const {pathname} = useLocation();
+  const { pathname } = useLocation();
 
   return (
     <div className="header">
@@ -62,6 +62,6 @@ function Header() {
       </div>
     </div>
   );
-}
+};
 
 export default Header;

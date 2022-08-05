@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react'
 import ContentLoader from "react-content-loader";
 
-function LoadingPizzaItem() {
+const LoadingPizzaItem: React.FC = () => {
   return (
     <ContentLoader
       className="pizza-block"

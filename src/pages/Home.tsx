@@ -51,7 +51,7 @@ function Home() {
       </div>
       <div className="content__items">
         {status === "success"
-          ? items.map((obj) => <PizzaItem key={obj.id} {...obj} />)
+          ? items.map((obj: any) => <PizzaItem key={obj.id} {...obj} />)
           : Array(12)
               .fill(0)
               .map((_, index) => <LoadingPizzaItem key={index} />)}

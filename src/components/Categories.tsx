@@ -12,10 +12,8 @@ const categoriesLabels = [
   "Закрытые",
 ];
 
-function Categories() {
-  const activeCategory = useSelector(
-    ({filters}) => filters.activeCategory
-  );
+const Categories: React.FC = () => {
+  const activeCategory = useSelector(({ filters }) => filters.activeCategory);
   const dispatch = useDispatch();
 
   return (
@@ -33,6 +31,6 @@ function Categories() {
       </ul>
     </div>
   );
-}
+};
 
 export default Categories;

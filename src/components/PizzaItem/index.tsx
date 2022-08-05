@@ -7,7 +7,23 @@ import { addItem } from "../../redux/slices/cartSlice";
 const typeNames = ["тонкое", "традиционное"];
 const sizeNames = [26, 30, 40];
 
-function PizzaItem({ id, img, title, price, types, sizes }) {
+type PizzaItemProps = {
+  id: string;
+  img: string;
+  title: string;
+  price: number;
+  types: number[];
+  sizes: number[];
+};
+
+const PizzaItem: React.FC<PizzaItemProps> = ({
+  id,
+  img,
+  title,
+  price,
+  types,
+  sizes,
+}) => {
   const dispatch = useDispatch();
   const itemCount = useSelector(({ cart }) =>
     cart.items.find((item) => item.id === id)
@@ -91,6 +107,6 @@ function PizzaItem({ id, img, title, price, types, sizes }) {
       </div>
     </div>
   );
-}
+};
 
 export default PizzaItem;

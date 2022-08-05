@@ -10,12 +10,12 @@ const sortLabels = [
   "алфавиту",
 ];
 
-function Sort() {
+const Sort: React.FC = () => {
   const dispatch = useDispatch();
   const [openSort, setOpenSort] = React.useState(false);
-  const sortRef = React.useRef();
+  const sortRef = React.useRef<HTMLDivElement>(null);
 
-  const activeSortItem = useSelector((state) => state.filters.activeSortItem);
+  const activeSortItem: number = useSelector(({ filters }) => filters.activeSortItem);
 
   const selectedSortItem = sortLabels[activeSortItem];
 
@@ -23,13 +23,17 @@ function Sort() {
     setOpenSort(!openSort);
   };
 
-  const onClickSortItem = (index) => {
+  const onClickSortItem = (index: number) => {
     dispatch(setActiveSortItem(index));
     setOpenSort(false);
   };
 
-  const handleClickOutSide = (e) => {
-    if (!e.path.includes(sortRef.current)) {
+  const handleClickOutSide = (e: MouseEvent) => {
+    const _event = event as MouseEvent & {
+      path: Node[]
+    }
+
+    if (sortRef.current && !_event.path.includes(sortRef.current)) {
       setOpenSort(false);
     }
   };
@@ -77,6 +81,6 @@ function Sort() {
       )}
     </div>
   );
-}
+};
 
 export default Sort;
