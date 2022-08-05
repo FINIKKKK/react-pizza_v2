@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { setActiveSortItem } from "../redux/slices/filterSlice";
+import { setActiveSortItem } from "../redux/slices/filtersSlice";
 import { RootState } from "../redux/store";
 
 const sortLabels = [

@@ -9,14 +9,14 @@ import {
   Pagination,
   Search,
 } from "../components";
-import { fetchPizzas } from "../redux/slices/pizzasSlice";
-import { RootState } from "../redux/store";
+import { filtersSliceSelector } from "../redux/slices/filtersSlice";
+import { fetchPizzas, pizzasSliceSelector } from "../redux/slices/pizzasSlice";
 
 function Home() {
   const dispatch = useDispatch();
   const { activeCategory, activeSortItem, currentPage, searchValue } =
-    useSelector(({ filters }: RootState) => filters);
-  const { items, status } = useSelector(({ pizzas }: RootState) => pizzas);
+    useSelector(filtersSliceSelector);
+  const { items, status } = useSelector(pizzasSliceSelector);
 
   const getPizzas = async () => {
     try {

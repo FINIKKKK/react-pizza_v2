@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { RootState } from "../store";
 
-type CartItem = {
+export type CartItem = {
   id: string;
   img: string;
   title: string;
@@ -34,7 +35,7 @@ const cartSlice = createSlice({
       } else {
         state.items.push({
           ...payload,
-          count: 1, 
+          count: 1,
         });
       }
 
@@ -60,6 +61,8 @@ const cartSlice = createSlice({
     },
   },
 });
+
+export const cartSliceSelector = ({ cart }: RootState) => cart;
 
 export const { addItem, removeItem, minusItem, clearCart } = cartSlice.actions;
 
