@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { setActiveSortItem } from "../redux/slices/filterSlice";
+import { RootState } from "../redux/store";
 
 const sortLabels = [
   "популярности",
@@ -15,7 +16,7 @@ const Sort: React.FC = () => {
   const [openSort, setOpenSort] = React.useState(false);
   const sortRef = React.useRef<HTMLDivElement>(null);
 
-  const activeSortItem: number = useSelector(({ filters }) => filters.activeSortItem);
+  const activeSortItem: number = useSelector(({ filters }: RootState) => filters.activeSortItem);
 
   const selectedSortItem = sortLabels[activeSortItem];
 

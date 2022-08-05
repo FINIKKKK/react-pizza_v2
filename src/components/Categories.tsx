@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { setActiveCategory } from "../redux/slices/filterSlice";
+import { RootState } from "../redux/store";
 
 const categoriesLabels = [
   "Все",
@@ -13,7 +14,7 @@ const categoriesLabels = [
 ];
 
 const Categories: React.FC = () => {
-  const activeCategory = useSelector(({ filters }) => filters.activeCategory);
+  const activeCategory = useSelector(({ filters }: RootState) => filters.activeCategory);
   const dispatch = useDispatch();
 
   return (

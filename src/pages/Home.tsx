@@ -10,16 +10,18 @@ import {
   Search,
 } from "../components";
 import { fetchPizzas } from "../redux/slices/pizzasSlice";
+import { RootState } from "../redux/store";
 
 function Home() {
   const dispatch = useDispatch();
   const { activeCategory, activeSortItem, currentPage, searchValue } =
-    useSelector(({ filters }) => filters);
-  const { items, status } = useSelector(({ pizzas }) => pizzas);
+    useSelector(({ filters }: RootState) => filters);
+  const { items, status } = useSelector(({ pizzas }: RootState) => pizzas);
 
   const getPizzas = async () => {
     try {
       dispatch(
+        // @ts-ignore
         fetchPizzas({
           activeCategory,
           activeSortItem,

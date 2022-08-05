@@ -3,6 +3,7 @@ import classNames from "classnames";
 import { useDispatch, useSelector } from "react-redux";
 
 import { addItem } from "../../redux/slices/cartSlice";
+import { RootState } from "../../redux/store";
 
 const typeNames = ["тонкое", "традиционное"];
 const sizeNames = [26, 30, 40];
@@ -25,7 +26,7 @@ const PizzaItem: React.FC<PizzaItemProps> = ({
   sizes,
 }) => {
   const dispatch = useDispatch();
-  const itemCount = useSelector(({ cart }) =>
+  const itemCount = useSelector(({ cart }: RootState) =>
     cart.items.find((item) => item.id === id)
   );
 

@@ -3,9 +3,10 @@ import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 
 import logo from "../assets/img/pizza-logo.svg";
+import { RootState } from "../redux/store";
 
 const Header: React.FC = () => {
-  const { totalCount, totalPrice } = useSelector(({ cart }) => cart);
+  const { totalCount, totalPrice } = useSelector(({ cart }: RootState) => cart);
 
   const { pathname } = useLocation();
 
