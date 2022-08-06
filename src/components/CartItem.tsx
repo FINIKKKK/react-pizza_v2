@@ -24,6 +24,8 @@ const CartItem: React.FC<CartItemProps> = ({
 }) => {
   const dispatch = useDispatch();
 
+  console.log(count)
+
   const onRemoveItem = () => {
     dispatch(removeItem(id));
   };
@@ -49,7 +51,7 @@ const CartItem: React.FC<CartItemProps> = ({
       <div className="cart__item-count">
         <button
           onClick={onMinusItem}
-          className="button button--outline button--circle cart__item-count-minus"
+          className={`button button--outline button--circle cart__item-count-minus ${count === 1 ? 'disabled' : ''}`}
         >
           <svg
             width="10"
@@ -71,7 +73,7 @@ const CartItem: React.FC<CartItemProps> = ({
         <b>{count}</b>
         <button
           onClick={onPlusItem}
-          className="button button--outline button--circle cart__item-count-plus"
+          className='button button--outline button--circle cart__item-count-plus'
         >
           <svg
             width="10"

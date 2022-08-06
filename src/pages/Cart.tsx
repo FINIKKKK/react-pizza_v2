@@ -96,10 +96,7 @@ const Cart: React.FC = () => {
 
         <div className="content__items">
           {items.map((obj: any) => (
-            <div className="cart__item-wrapper">
-              <h3 className="cart__group-title">{obj.group}</h3>
-              <CartItem key={obj.id} {...obj} />
-            </div>
+            <CartItem key={obj.id} {...obj} />
           ))}
         </div>
 
@@ -111,7 +108,7 @@ const Cart: React.FC = () => {
             </span>
             <span>
               {" "}
-              Сумма заказа: <b>{totalPrice}₽</b>{" "}
+              Сумма заказа: <b>{totalPrice} ₽</b>{" "}
             </span>
           </div>
           <div className="cart__bottom-buttons">

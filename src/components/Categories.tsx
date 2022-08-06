@@ -13,7 +13,7 @@ const categoriesLabels = [
   "Закрытые",
 ];
 
-const Categories: React.FC = () => {
+const Categories: React.FC = React.memo(() => {
   const activeCategory = useSelector(({ filters }: RootState) => filters.activeCategory);
   const dispatch = useDispatch();
 
@@ -32,6 +32,6 @@ const Categories: React.FC = () => {
       </ul>
     </div>
   );
-};
+});
 
 export default Categories;

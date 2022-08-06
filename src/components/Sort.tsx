@@ -11,7 +11,7 @@ const sortLabels = [
   "алфавиту",
 ];
 
-const Sort: React.FC = () => {
+const Sort: React.FC = React.memo(() => {
   const dispatch = useDispatch();
   const [openSort, setOpenSort] = React.useState(false);
   const sortRef = React.useRef<HTMLDivElement>(null);
@@ -82,6 +82,6 @@ const Sort: React.FC = () => {
       )}
     </div>
   );
-};
+});
 
 export default Sort;

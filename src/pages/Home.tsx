@@ -8,6 +8,7 @@ import {
   Categories,
   Pagination,
   Search,
+  NotFoundSearch,
 } from "../components";
 import { filtersSliceSelector } from "../redux/slices/filtersSlice";
 import {
@@ -41,6 +42,8 @@ function Home() {
     }
   };
 
+  console.log(PizzaStatus.SUCCESS && items);
+
   React.useEffect(() => {
     getPizzas();
   }, [activeCategory, activeSortItem, currentPage, searchValue]);
@@ -56,7 +59,7 @@ function Home() {
         <Search />
       </div>
       <div className="content__items">
-        {PizzaStatus.LOADING
+        {items.length > 0
           ? items.map((obj: any) => <PizzaItem key={obj.id} {...obj} />)
           : Array(12)
               .fill(0)
