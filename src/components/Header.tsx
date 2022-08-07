@@ -6,9 +6,19 @@ import logo from "../assets/img/pizza-logo.svg";
 import { cartSliceSelector } from "../redux/slices/cartSlice";
 
 const Header: React.FC = () => {
-  const { totalCount, totalPrice } = useSelector(cartSliceSelector);
+  const { items, totalCount, totalPrice } = useSelector(cartSliceSelector);
 
   const { pathname } = useLocation();
+
+  const isMounted = React.useRef(false);
+
+  React.useEffect(() => {
+    if (isMounted.current) {
+      const data = JSON.stringify(items);
+      localStorage.setItem("cart", data);
+    }
+    isMounted.current = true;
+  }, [items]);
 
   return (
     <div className="header">

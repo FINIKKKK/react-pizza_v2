@@ -17,10 +17,33 @@ interface CartSliceState {
   totalPrice: number;
 }
 
+const getTotalPriceLS = (items: CartItem[]) => {
+  return items.reduce((sum, item) => item.price * item.count + sum, 0);
+};
+
+const getTotalCountLS = (items: CartItem[]) => {
+  return items.reduce((sum, item) => item.count + sum, 0);
+};
+
+const getCartLS = () => {
+  const data = localStorage.getItem("cart");
+  const items = data ? JSON.parse(data) : [];
+  const totalPrice = getTotalPriceLS(items);
+  const totalCount = getTotalCountLS(items);
+
+  return {
+    items,
+    totalPrice,
+    totalCount,
+  };
+};
+
+const cartItems = getCartLS();
+
 const initialState: CartSliceState = {
-  items: [],
-  totalCount: 0,
-  totalPrice: 0,
+  items: cartItems.items,
+  totalCount: cartItems.totalCount,
+  totalPrice: cartItems.totalPrice,
 };
 
 const cartSlice = createSlice({
@@ -39,8 +62,8 @@ const cartSlice = createSlice({
         });
       }
 
-      state.totalCount++;
-      state.totalPrice += payload.price;
+      state.totalCount = getTotalCountLS(state.items);
+      state.totalPrice = getTotalPriceLS(state.items);
     },
     removeItem(state, { payload }: PayloadAction<string>) {
       state.items = state.items.filter((obj) => obj.id !== payload);

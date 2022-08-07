@@ -1,3 +1,4 @@
+import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -7,6 +8,7 @@ import { cartSliceSelector, clearCart } from "../redux/slices/cartSlice";
 const Cart: React.FC = () => {
   const dispatch = useDispatch();
   const { items, totalCount, totalPrice } = useSelector(cartSliceSelector);
+  
 
   const onClearCart = () => {
     dispatch(clearCart());

@@ -42,8 +42,6 @@ function Home() {
     }
   };
 
-  console.log(PizzaStatus.SUCCESS && items);
-
   React.useEffect(() => {
     getPizzas();
   }, [activeCategory, activeSortItem, currentPage, searchValue]);
