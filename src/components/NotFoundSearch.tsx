@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 import ImgSearch from "../assets/img/search.svg";
-import { filtersSliceSelector } from "../redux/slices/filtersSlice";
+import { filtersSliceSelector } from "../redux/filters/selectors";
 
 const NotFoundSearch: React.FC = () => {
   const { searchValue } = useSelector(filtersSliceSelector);

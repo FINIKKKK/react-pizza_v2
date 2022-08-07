@@ -2,8 +2,8 @@ import React from "react";
 import classNames from "classnames";
 import { useDispatch, useSelector } from "react-redux";
 
-import { addItem } from "../../redux/slices/cartSlice";
 import { RootState } from "../../redux/store";
+import { addItem } from "../../redux/cart/slice";
 
 const typeNames = ["тонкое", "традиционное"];
 const sizeNames = [26, 30, 40];

@@ -2,7 +2,7 @@ import React from "react";
 import ReactPaginate from "react-paginate";
 import { useDispatch } from "react-redux";
 
-import { setCurrentPage } from "../../redux/slices/filtersSlice";
+import { setCurrentPage } from "../../redux/filters/slice";
 
 import styles from "./Pagination.module.scss";
 
@@ -20,6 +20,6 @@ const Pagination: React.FC = () => {
       previousLabel="<"
     />
   );
-}
+};
 
 export default Pagination;

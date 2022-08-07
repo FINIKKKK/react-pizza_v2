@@ -10,12 +10,10 @@ import {
   Search,
   NotFoundSearch,
 } from "../components";
-import { filtersSliceSelector } from "../redux/slices/filtersSlice";
-import {
-  fetchPizzas,
-  pizzasSliceSelector,
-  PizzaStatus,
-} from "../redux/slices/pizzasSlice";
+import { filtersSliceSelector } from "../redux/filters/selectors";
+import { pizzasSliceSelector } from "../redux/pizzas/selectors";
+import { fetchPizzas } from "../redux/pizzas/slice";
+
 import { useAppDispatch } from "../redux/store";
 
 function Home() {

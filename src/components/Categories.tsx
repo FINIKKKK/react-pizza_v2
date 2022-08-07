@@ -1,8 +1,8 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { setActiveCategory } from "../redux/slices/filtersSlice";
-import { RootState } from "../redux/store";
+import { activeCategorySelector } from "../redux/filters/selectors";
+import { setActiveCategory } from "../redux/filters/slice";
 
 const categoriesLabels = [
   "Все",
@@ -14,7 +14,7 @@ const categoriesLabels = [
 ];
 
 const Categories: React.FC = React.memo(() => {
-  const activeCategory = useSelector(({ filters }: RootState) => filters.activeCategory);
+  const activeCategory = useSelector(activeCategorySelector);
   const dispatch = useDispatch();
 
   return (

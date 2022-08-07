@@ -1,7 +1,8 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { activeSortSelector } from "../redux/filters/selectors";
 
-import { setActiveSortItem } from "../redux/slices/filtersSlice";
+import { setActiveSortItem } from "../redux/filters/slice";
 import { RootState } from "../redux/store";
 
 const sortLabels = [
@@ -16,7 +17,7 @@ const Sort: React.FC = React.memo(() => {
   const [openSort, setOpenSort] = React.useState(false);
   const sortRef = React.useRef<HTMLDivElement>(null);
 
-  const activeSortItem: number = useSelector(({ filters }: RootState) => filters.activeSortItem);
+  const activeSortItem: number = useSelector(activeSortSelector);
 
   const selectedSortItem = sortLabels[activeSortItem];
 
