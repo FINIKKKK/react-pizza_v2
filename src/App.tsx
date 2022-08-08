@@ -1,20 +1,26 @@
+import { lazy, Suspense } from "react";
+
 import { Routes, Route } from "react-router-dom";
 
-import { Header } from "./components";
-import { Home, Cart } from "./pages";
+import { Header, Loader } from "./components";
+
+const Home = lazy(() => import("./pages/Home"));
+const Cart = lazy(() => import("./pages/Cart"));
 
 function App() {
   return (
-    <div className="wrapper">
-      <Header />
+    <Suspense fallback={<Loader />}>
+      <div className="wrapper">
+        <Header />
 
-      <div className="content">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/cart" element={<Cart />} />
-        </Routes>
+        <div className="content">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/cart" element={<Cart />} />
+          </Routes>
+        </div>
       </div>
-    </div>
+    </Suspense>
   );
 }
 

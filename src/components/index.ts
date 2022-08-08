@@ -5,6 +5,7 @@ export { default as CartEmpty } from "./CartEmpty";
 export { default as NotFoundSearch } from "./NotFoundSearch";
 export { default as Search } from "./Search";
 export { default as Pagination } from "./Pagination";
+export * from "./Loader";
 
 export { default as PizzaItem } from "./PizzaItem";
 export { default as LoadingPizzaItem } from "./PizzaItem/LoadingPizzaItem";

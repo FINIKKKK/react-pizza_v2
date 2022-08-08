@@ -4,7 +4,7 @@ import ContentLoader from "react-content-loader";
 const LoadingPizzaItem: React.FC = () => {
   return (
     <ContentLoader
-      className="pizza-block"
+      className="pizza-block pizza-block__loading"
       speed={2}
       width={280}
       height={550}

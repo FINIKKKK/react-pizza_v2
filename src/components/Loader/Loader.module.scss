@@ -1,0 +1,57 @@
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 1100;
+  background-color: #ffdf8c;
+  transition: 0.3s;
+  p {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: calc(70% + 0.1vw);
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-weight: 700;
+    color: #000;
+  }
+  .circle {
+    display: block;
+    position: absolute;
+    border-radius: 50%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 250px;
+    height: 250px;
+    animation-name: SpinAround;
+    animation-iteration-count: infinite;
+    animation-duration: 2s;
+    animation-fill-mode: both;
+    animation-timing-function: linear;
+    box-shadow: 0px 0px 1px rgba(#000, 1);
+    &:nth-of-type(1) {
+      animation-direction: reverse;
+      transform-origin: 49.6% 49.8%;
+    }
+
+    &:nth-of-type(2) {
+      transform-origin: 49.5% 48.8%;
+    }
+  }
+  @keyframes SpinAround {
+    0% {
+      transform: translate(-50%, -50%) rotate(0);
+    }
+    100% {
+      transform: translate(-50%, -50%) rotate(-360deg);
+    }
+  }
+
+  &.disabled {
+    opacity: 0;
+  }
+}

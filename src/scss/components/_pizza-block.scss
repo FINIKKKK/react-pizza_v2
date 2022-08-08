@@ -4,6 +4,9 @@
   margin-bottom: 65px;
   flex: 0 0 25%;
   padding: 0 15px;
+  &.pizza-block__loading {
+    margin-bottom: 0px;
+  }
   &__content {
     width: 280px;
     text-align: center;
