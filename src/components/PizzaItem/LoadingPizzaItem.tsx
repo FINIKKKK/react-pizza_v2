@@ -1,7 +1,7 @@
 import React from 'react'
 import ContentLoader from "react-content-loader";
 
-const LoadingPizzaItem: React.FC = () => {
+export const LoadingPizzaItem: React.FC = () => {
   return (
     <ContentLoader
       className="pizza-block pizza-block__loading"
@@ -20,5 +20,3 @@ const LoadingPizzaItem: React.FC = () => {
     </ContentLoader>
   );
 }
-
-export default LoadingPizzaItem;

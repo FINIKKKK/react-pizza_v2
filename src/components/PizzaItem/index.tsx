@@ -17,7 +17,7 @@ type PizzaItemProps = {
   sizes: number[];
 };
 
-const PizzaItem: React.FC<PizzaItemProps> = ({
+export const PizzaItem: React.FC<PizzaItemProps> = ({
   id,
   img,
   title,
@@ -110,5 +110,3 @@ const PizzaItem: React.FC<PizzaItemProps> = ({
     </div>
   );
 };
-
-export default PizzaItem;

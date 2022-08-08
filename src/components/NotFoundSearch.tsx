@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import ImgSearch from "../assets/img/search.svg";
 import { filtersSliceSelector } from "../redux/filters/selectors";
 
-const NotFoundSearch: React.FC = () => {
+export const NotFoundSearch: React.FC = () => {
   const { searchValue } = useSelector(filtersSliceSelector);
 
   return (
@@ -15,5 +15,3 @@ const NotFoundSearch: React.FC = () => {
     </div>
   );
 };
-
-export default NotFoundSearch;

@@ -3,23 +3,27 @@ import { useSelector, useDispatch } from "react-redux";
 import { activeSortSelector } from "../redux/filters/selectors";
 
 import { setActiveSortItem } from "../redux/filters/slice";
-import { RootState } from "../redux/store";
 
-const sortLabels = [
-  "популярности",
-  "цене по убыванию",
-  "цена по возрастанию",
-  "алфавиту",
+type SortItem = {
+  title: string;
+  value: string;
+};
+
+export const sortList: SortItem[] = [
+  { title: "по популярности", value: "rating" },
+  { title: "цене по убыванию", value: "price" },
+  { title: "цена по возрастанию", value: "price" },
+  { title: "по алфавиту", value: "name" },
 ];
 
-const Sort: React.FC = React.memo(() => {
+export const Sort: React.FC = React.memo(() => {
   const dispatch = useDispatch();
   const [openSort, setOpenSort] = React.useState(false);
   const sortRef = React.useRef<HTMLDivElement>(null);
 
   const activeSortItem: number = useSelector(activeSortSelector);
 
-  const selectedSortItem = sortLabels[activeSortItem];
+  const selectedSortItem = sortList[activeSortItem].title;
 
   const onClickSort = () => {
     setOpenSort(!openSort);
@@ -32,8 +36,8 @@ const Sort: React.FC = React.memo(() => {
 
   const handleClickOutSide = (e: MouseEvent) => {
     const _event = e as MouseEvent & {
-      path: Node[]
-    }
+      path: Node[];
+    };
 
     if (sortRef.current && !_event.path.includes(sortRef.current)) {
       setOpenSort(false);
@@ -69,13 +73,13 @@ const Sort: React.FC = React.memo(() => {
       {openSort && (
         <div className="sort__popup">
           <ul>
-            {sortLabels.map((label, index) => (
+            {sortList.map((obj, index) => (
               <li
-                key={`${label}_${index}`}
+                key={`${obj.title}_${index}`}
                 className={activeSortItem === index ? "active" : ""}
                 onClick={() => onClickSortItem(index)}
               >
-                {label}
+                {obj.title}
               </li>
             ))}
           </ul>
@@ -84,5 +88,3 @@ const Sort: React.FC = React.memo(() => {
     </div>
   );
 });
-
-export default Sort;

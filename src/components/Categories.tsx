@@ -13,7 +13,7 @@ const categoriesLabels = [
   "Закрытые",
 ];
 
-const Categories: React.FC = React.memo(() => {
+export const Categories: React.FC = React.memo(() => {
   const activeCategory = useSelector(activeCategorySelector);
   const dispatch = useDispatch();
 
@@ -33,5 +33,3 @@ const Categories: React.FC = React.memo(() => {
     </div>
   );
 });
-
-export default Categories;

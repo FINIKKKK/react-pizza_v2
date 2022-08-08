@@ -1,12 +1,12 @@
-export { default as Header } from "./Header";
-export { default as Categories } from "./Categories";
-export { default as Sort } from "./Sort";
-export { default as CartEmpty } from "./CartEmpty";
-export { default as NotFoundSearch } from "./NotFoundSearch";
-export { default as Search } from "./Search";
-export { default as Pagination } from "./Pagination";
+export * from "./Header";
+export * from "./Categories";
+export * from "./Sort";
+export * from "./CartEmpty";
+export * from "./NotFoundSearch";
+export * from "./Search";
+export * from "./Pagination";
 export * from "./Loader";
 
-export { default as PizzaItem } from "./PizzaItem";
-export { default as LoadingPizzaItem } from "./PizzaItem/LoadingPizzaItem";
-export { default as CartItem } from "./CartItem";
+export * from "./PizzaItem";
+export * from "./PizzaItem/LoadingPizzaItem";
+export * from "./CartItem";

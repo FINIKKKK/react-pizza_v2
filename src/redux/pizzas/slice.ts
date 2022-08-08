@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
+import { sortList } from "../../components/Sort";
 import { FetchParams, PizzaItem, PizzasSliseState, PizzaStatus } from "./types";
 
-const sortLabels = ["rating", "price", "name"];
 
 export const fetchPizzas = createAsyncThunk<PizzaItem[], FetchParams>(
   "pizzas/fetchPizzasStatus",
@@ -10,7 +10,7 @@ export const fetchPizzas = createAsyncThunk<PizzaItem[], FetchParams>(
     const { data } = await axios.get<PizzaItem[]>(
       `https://62dbdd5d57ac3c3f3c5055d6.mockapi.io/pizzas?page=${currentPage}&limit=4&search=${searchValue}&${
         activeCategory > 0 ? `category=${activeCategory}` : ""
-      }&sortBy=${sortLabels[activeSortItem]}&order=${
+      }&sortBy=${sortList[activeSortItem].value}&order=${
         activeSortItem === 2 ? "asc" : "desc"
       }`
     );
