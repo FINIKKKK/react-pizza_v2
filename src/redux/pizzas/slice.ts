@@ -3,7 +3,6 @@ import axios from "axios";
 import { sortList } from "../../components/Sort";
 import { FetchParams, PizzaItem, PizzasSliseState, PizzaStatus } from "./types";
 
-
 export const fetchPizzas = createAsyncThunk<PizzaItem[], FetchParams>(
   "pizzas/fetchPizzasStatus",
   async ({ activeCategory, activeSortItem, currentPage, searchValue }) => {
@@ -20,7 +19,16 @@ export const fetchPizzas = createAsyncThunk<PizzaItem[], FetchParams>(
 
 const initialState: PizzasSliseState = {
   items: [],
-  status: PizzaStatus.LOADING, 
+  status: PizzaStatus.LOADING,
+  activeItem: {
+    id: "",
+    img: "",
+    title: "",
+    price: 0,
+    types: [],
+    sizes: [],
+  },
+  openPizzaPopup: false,
 };
 
 const pizzasSlice = createSlice({
@@ -29,6 +37,13 @@ const pizzasSlice = createSlice({
   reducers: {
     setPizzas(state, { payload }: PayloadAction<PizzaItem[]>) {
       state.items = payload;
+    },
+    setActivePizza(state, { payload }: PayloadAction<PizzaItem>) {
+      state.activeItem = payload;
+      state.openPizzaPopup = true;
+    },
+    closePizzaPopup(state) {
+      state.openPizzaPopup = false;
     },
   },
   extraReducers: (builder) => {
@@ -47,8 +62,7 @@ const pizzasSlice = createSlice({
   },
 });
 
-
-
-export const { setPizzas } = pizzasSlice.actions;
+export const { setPizzas, setActivePizza, closePizzaPopup } =
+  pizzasSlice.actions;
 
 export default pizzasSlice.reducer;

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { RootState } from "../../redux/store";
 import { addItem } from "../../redux/cart/slice";
+import { setActivePizza } from "../../redux/pizzas/slice";
 
 const typeNames = ["тонкое", "традиционное"];
 const sizeNames = [26, 30, 40];
@@ -49,10 +50,19 @@ export const PizzaItem: React.FC<PizzaItemProps> = ({
 
   const addedCount = itemCount ? itemCount.count : 0;
 
+  const onActiveItem = () => {
+    dispatch(setActivePizza({ id, img, title, price, types, sizes }));
+  };
+
   return (
     <div className="pizza-block">
       <div className="pizza-block__content">
-        <img className="pizza-block__image" src={img} alt="Pizza" />
+        <img
+          onClick={onActiveItem}
+          className="pizza-block__image"
+          src={img}
+          alt="Pizza"
+        />  
         <h4 className="pizza-block__title">{title}</h4>
         <div className="pizza-block__selector">
           <ul>

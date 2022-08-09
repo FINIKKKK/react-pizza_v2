@@ -17,6 +17,8 @@ export type FetchParams = {
 export interface PizzasSliseState {
   items: PizzaItem[];
   status: PizzaStatus;
+  activeItem: PizzaItem;
+  openPizzaPopup: boolean,
 }
 
 export enum PizzaStatus {

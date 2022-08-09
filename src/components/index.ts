@@ -7,6 +7,7 @@ export * from "./Search";
 export * from "./Pagination";
 export * from "./Loader";
 
+export * from "./PizzaPopup";
 export * from "./PizzaItem";
 export * from "./PizzaItem/LoadingPizzaItem";
 export * from "./CartItem";

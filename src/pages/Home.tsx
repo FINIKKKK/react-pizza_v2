@@ -9,6 +9,7 @@ import {
   Pagination,
   Search,
   NotFoundSearch,
+  PizzaPopup
 } from "../components";
 import { filtersSliceSelector } from "../redux/filters/selectors";
 import { pizzasSliceSelector } from "../redux/pizzas/selectors";
@@ -20,7 +21,7 @@ function Home() {
   const dispatch = useAppDispatch();
   const { activeCategory, activeSortItem, currentPage, searchValue } =
     useSelector(filtersSliceSelector);
-  const { items } = useSelector(pizzasSliceSelector);
+  const { items, openPizzaPopup } = useSelector(pizzasSliceSelector);
 
   const getPizzas = async () => {
     try {
@@ -61,6 +62,8 @@ function Home() {
               .fill(0)
               .map((_, index) => <LoadingPizzaItem key={index} />)}
       </div>
+
+      {openPizzaPopup && <PizzaPopup />}
       <Pagination />
     </div>
   );
