@@ -9,15 +9,16 @@ import {
   Pagination,
   Search,
   NotFoundSearch,
-  PizzaPopup
+  PizzaPopup,
 } from "../components";
 import { filtersSliceSelector } from "../redux/filters/selectors";
 import { pizzasSliceSelector } from "../redux/pizzas/selectors";
 import { fetchPizzas } from "../redux/pizzas/slice";
+import { PizzaItemType } from "../redux/pizzas/types";
 
 import { useAppDispatch } from "../redux/store";
 
-function Home() {
+export const Home: React.FC = () => {
   const dispatch = useAppDispatch();
   const { activeCategory, activeSortItem, currentPage, searchValue } =
     useSelector(filtersSliceSelector);
@@ -57,8 +58,10 @@ function Home() {
       </div>
       <div className="content__items">
         {items.length > 0
-          ? items.map((obj: any) => <PizzaItem key={obj.id} {...obj} />)
-          : Array(4)
+          ? items.map((obj: PizzaItemType) => (
+              <PizzaItem key={obj.id} {...obj} />
+            ))
+          : Array(12)
               .fill(0)
               .map((_, index) => <LoadingPizzaItem key={index} />)}
       </div>
@@ -67,6 +70,4 @@ function Home() {
       <Pagination />
     </div>
   );
-}
-
-export default Home;
+};

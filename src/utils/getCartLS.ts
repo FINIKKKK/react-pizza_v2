@@ -1,10 +1,10 @@
-import { CartItem } from "../redux/cart/types";
+import { CartItemType } from "../redux/cart/types";
 
-export const getTotalPriceLS = (items: CartItem[]) => {
+export const getTotalPriceLS = (items: CartItemType[]) => {
   return items.reduce((sum, item) => item.price * item.count + sum, 0);
 };
 
-export const getTotalCountLS = (items: CartItem[]) => {
+export const getTotalCountLS = (items: CartItemType[]) => {
   return items.reduce((sum, item) => item.count + sum, 0);
 };
 

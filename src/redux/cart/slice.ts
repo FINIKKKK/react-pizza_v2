@@ -1,6 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { getCartLS, getTotalCountLS, getTotalPriceLS } from "../../utils/getCartLS";
-import { CartItem, CartSliceState } from "./types";
+import {
+  getCartLS,
+  getTotalCountLS,
+  getTotalPriceLS,
+} from "../../utils/getCartLS";
+import { CartItemType, CartSliceState } from "./types";
 
 const initialState: CartSliceState = {
   items: getCartLS().items,
@@ -12,7 +16,7 @@ const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addItem(state, { payload }: PayloadAction<CartItem>) {
+    addItem(state, { payload }: PayloadAction<CartItemType>) {
       const findItem = state.items.find((item) => item.id === payload.id);
 
       if (findItem) {
@@ -32,7 +36,7 @@ const cartSlice = createSlice({
       state.totalCount = getTotalCountLS(state.items);
       state.totalPrice = getTotalPriceLS(state.items);
     },
-    minusItem(state, { payload }: PayloadAction<CartItem>) {
+    minusItem(state, { payload }: PayloadAction<CartItemType>) {
       const findItem = state.items.find((item) => item.id === payload.id);
 
       if (findItem && findItem.count > 1) {

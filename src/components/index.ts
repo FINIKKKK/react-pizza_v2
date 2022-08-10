@@ -5,8 +5,6 @@ export * from "./CartEmpty";
 export * from "./NotFoundSearch";
 export * from "./Search";
 export * from "./Pagination";
-export * from "./Loader";
-
 export * from "./PizzaPopup";
 export * from "./PizzaItem";
 export * from "./PizzaItem/LoadingPizzaItem";

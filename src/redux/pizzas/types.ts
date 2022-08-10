@@ -1,4 +1,4 @@
-export type PizzaItem = {
+export type PizzaItemType = {
   id: string;
   img: string;
   title: string;
@@ -15,9 +15,9 @@ export type FetchParams = {
 };
 
 export interface PizzasSliseState {
-  items: PizzaItem[];
+  items: PizzaItemType[];
   status: PizzaStatus;
-  activeItem: PizzaItem;
+  activeItem: PizzaItemType;
   openPizzaPopup: boolean,
 }
 

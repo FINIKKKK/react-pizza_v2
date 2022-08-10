@@ -1,16 +1,7 @@
-import Loadable from "react-loadable";
 import { Routes, Route } from "react-router-dom";
 
-import { Header, Loader } from "./components";
-
-const Home = Loadable({
-  loader: () => import("./pages/Home"),
-  loading: () => <Loader />,
-});
-const Cart = Loadable({
-  loader: () => import("./pages/Cart"),
-  loading: () => <Loader />,
-});
+import { Header } from "./components";
+import { Home, Cart } from "./pages";
 
 function App() {
   return (
