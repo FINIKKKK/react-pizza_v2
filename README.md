@@ -1,3 +1,5 @@
+❗️ Демо не работает некоректно так как, api удален из mockapi
+
 # React Pizza v2 🍕
 
 Этот проект основан на серии уроков от Archakov Blog (https://www.youtube.com/playlist?list=PL0FGkDGJQjJG9eI85xM1_iLIf6BcEdaNl)
