@@ -1,24 +1,22 @@
-❗️ Демо не работает так как, api удален из mockapi
+❗️ The demo doesn't work because the API has been removed from MockAPI.
 
 # React Pizza v2 🍕
 
-Этот проект основан на серии уроков от Archakov Blog (https://www.youtube.com/playlist?list=PL0FGkDGJQjJG9eI85xM1_iLIf6BcEdaNl)
+The initial setup of the application was made with [Create React App](https://create-react-app.dev/)  
+[MockAPI](https://mockapi.io/docs) was used for storing data and backend functionality
 
-Предварительная настройка приложения сделана с помощью [Create React App](https://create-react-app.dev/)  
-Для хранения данных и функционала бэкенда использовался [MockAPI](https://mockapi.io/docs)
-
-## Технологии, которые использовались 🛠:
+## Technologies used 🛠:
 - **ReactJS 18**
-- **React Hooks** (хуки)
+- **React Hooks** (hooks)
 - **TypeScript**
-- **Redux Toolkit** (хранение данных)
-- **SCSS-Modules** / (стилизация)
-- **React Router v6** (навигация)
-- **Axios** (отправка запроса на бэкенд)
-- **React Content Loader** (скелетон)
-- **React Pagination** (пагинация)
-- **Lodash.Debounce** (задержка при вводе)
-- **LocaleStorage** (хранение данных локально)
+- **Redux Toolkit** (storing data)
+- **SCSS-Modules** / (styling)
+- **React Router v6** (navigation)
+- **Axios** (sending a request to the backend)
+- **React Content Loader** (skeleton)
+- **React Pagination** (pagination)
+- **Lodash.Debounce** (input debounce)
+- **LocaleStorage** (storing data locally)
 
 ## Demo 🔥:
 https://react-pizza-v2-smoky.vercel.app/
